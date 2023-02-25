@@ -1,0 +1,39 @@
+department
+-
+dept_no pk
+dept_name
+
+
+Employeedept
+-
+employee_number PK
+department_no
+
+employee_manage
+-
+employee_no PK
+dept_no FK
+
+employee_info
+-
+emp_no PK
+emp_title_id
+birth_date
+first_name
+last_name
+sex
+hire_date
+
+
+salaries
+-
+emp_no FK
+salary 
+
+
+
+title
+-
+title_id PK
+title
+
