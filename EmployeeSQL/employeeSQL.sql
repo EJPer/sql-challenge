@@ -24,13 +24,13 @@ SELECT * FROM DEPARTMENTS
 ---------------------------------------------------------------------
 --empoyee number data
 --DROP IF NEEDED
-drop employee_dept
+drop table employee_dept
 
 --create empoyee number table
 CREATE TABLE employee_dept (
 	employee_number integer not null,
 	dept_no varchar(30) not null,
-	primary key (employee_number),
+	primary key (employee_number, dept_no),
 	foreign key (dept_no) REFERENCES DEPARTMENTS(dept_no)
 	
 )
@@ -41,6 +41,7 @@ SELECT * FROM employee_dept
 
 
 
+
 ---------------------------------------------------------------------
 --dept manger table creation
 --drop table if needed
@@ -48,14 +49,16 @@ drop table employeemanage
 
 --creating table
 CREATE TABLE employeemanage (
-	employee_number integer not null,
 	dept_no VARCHAR(30) not null,
-	foreign key employee_dept,
+	employee_number integer not null,
+	PRIMARY KEY (dept_no, employee_number),
 	foreign key (dept_no) REFERENCES DEPARTMENTS(dept_no)
 )
 
 --select * to check
 SELECT * FROM employeemanage
+
+select count(*) from employeemanage
 
 
 ---------------------------------------------------------------------
@@ -74,7 +77,7 @@ CREATE TABLE employeeinfo (
 	last_name VARCHAR(60) not null,
 	sex VARCHAR(60),
 	hire_date VARCHAR(60),
-	foreign key  (employee_number) REFERENCES employeenumbers()
+	primary key (first_name,last_name,birth_date, employee_number)
 	
 )
 
@@ -91,12 +94,14 @@ DROP TABLE salaries
 CREATE TABLE salaries (
 	employee_number integer not null,
 	salary integer not null,
-	foreign key (employee_number) REFERENCES employeenumbers(employee_number)
+	primary key (employee_number, salary)
 	
 )
 
 --select * to check
 SELECT * FROM salaries
+
+select count(*) from salaries 
 
 ---------------------------------------------------------------------
 
@@ -114,6 +119,20 @@ CREATE TABLE titles (
 
 --select * to check
 select * from titles
+
+---------------------------------------------------------------------
+
+--employee number, last name, first name, sex and salary
+SELECT p1.employee_number, p1.last_name, p1.first_name,p1.sex, p2.salary
+FROM employeeinfo as p1
+INNER JOIN salaries as p2 ON
+p1.employee_number= p2.employee_number;
+
+
+--List the first name, last name, and hire date for the employees who were hired in 1986
+SELECT birth_date, first_name, last_name
+from employeeinfo
+where right(hire_date,4) = '1986'
 
 
 
