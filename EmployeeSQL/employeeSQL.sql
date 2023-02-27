@@ -167,12 +167,28 @@ SELECT first_name, last_name, sex
 from employeeinfo
 where first_name = 'Hercules' and last_name like 'B%'
 
+--list employee #, first name and last name of all employees in the sales department
+SELECT p1.employee_number, p1.first_name, p1.last_name, p2.dept_no , p3.dept_name
+from employeeinfo as p1
+INNER JOIN employee_dept as p2 ON
+p1.employee_number = p2.employee_number
+INNER JOIN departments as p3 ON
+p2.dept_no = p3.dept_no
+where p3.dept_name = 'Sales'
 
+--list employee #, first name and last name of all employees in the sales and devlopment department
+SELECT p1.employee_number, p1.first_name, p1.last_name, p2.dept_no , p3.dept_name
+from employeeinfo as p1
+INNER JOIN employee_dept as p2 ON
+p1.employee_number = p2.employee_number
+INNER JOIN departments as p3 ON
+p2.dept_no = p3.dept_no
+where p3.dept_name in ('Sales','Development')
 
-
-
-
-
+--order frequency of employee's last names from ascending to descending order.
+SELECT last_name, COUNT(*)
+FROM employeeinfo
+group by last_name
 
 
 
