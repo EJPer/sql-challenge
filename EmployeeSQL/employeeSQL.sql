@@ -135,8 +135,37 @@ from employeeinfo
 where right(hire_date,4) = '1986'
 
 
+--List the manager of each department along with their department number, department name, employee number, last name, and first name.
+-- need dept_no and employee_number from employeemanage table
+-- need dept_name from departments tabe
+-- need first and last name from employeeinfo table
+-- join everything back to manager table
 
+SELECT  p1.dept_no, p3.dept_name, p1.employee_number, p2.first_name, p2.last_name
+FROM employeemanage as p1
+INNER JOIN employeeinfo as p2 ON
+p1.employee_number= p2.employee_number
+INNER JOIN departments as p3 ON
+p1.dept_no = p3.dept_no
+; 
 
+--department number for each employee along with employee nubmber last and first name as well as department name
+--need first and last name from employee info
+--need dept_no from employee depts
+--need dept_names from departments
+-- join empoyee info to employee dept then employee departments to departments
+SELECT p1.employee_number, p1.first_name, p1.last_name, p2.dept_no , p3.dept_name
+from employeeinfo as p1
+INNER JOIN employee_dept as p2 ON
+p1.employee_number = p2.employee_number
+INNER JOIN departments as p3 ON
+p2.dept_no = p3.dept_no
+
+--Find first name Hercules and last names beginning with the letter B
+--no joins needed us employee info table
+SELECT first_name, last_name, sex 
+from employeeinfo
+where first_name = 'Hercules' and last_name like 'B%'
 
 
 
