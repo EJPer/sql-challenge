@@ -1,39 +1,37 @@
 department
 -
-dept_no pk
-dept_name
+dept_no CHAR(10) pk
+dept_name VARCHAR 
 
 
 Employeedept
 -
-employee_number PK
-department_no
+employee_number integer PK FK >- employee_info.emp_number
+department_no CHAR(10) PK FK - department.dept_no
 
 employee_manage
 -
-employee_no PK
-dept_no FK
+employee_no integer PK
+dept_no VARCHAR FK - department.dept_no
 
 employee_info
 -
-emp_no PK
-emp_title_id
-birth_date
-first_name
-last_name
-sex
-hire_date
+emp_number Integer PK
+emp_title_id CHAR(5) FK >- title.title_id
+birth_date date 
+first_name VARCHAR 
+last_name VARCHAR 
+sex CHAR
+hire_date date
 
 
 salaries
 -
-emp_no FK
-salary 
-
+emp_no INTEGER PK FK - employee_info.emp_number
+salary INTEGER 
 
 
 title
 -
-title_id PK
-title
-
+title_id CHAR(5) 
+title VARCHAR(20) PK 
