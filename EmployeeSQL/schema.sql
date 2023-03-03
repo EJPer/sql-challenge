@@ -1,3 +1,5 @@
+
+
 CREATE TABLE "department" (
     "dept_no" CHAR(10)   NOT NULL,
     "dept_name" VARCHAR   NOT NULL,
@@ -14,7 +16,6 @@ CREATE TABLE "Employeedept" (
         "employee_number","department_no"
      )
 );
-
 
 
 
@@ -40,6 +41,8 @@ CREATE TABLE "employee_info" (
      )
 );
 
+
+
 CREATE TABLE "salaries" (
     "emp_no" INTEGER   NOT NULL,
     "salary" INTEGER   NOT NULL,
@@ -63,9 +66,6 @@ REFERENCES "department" ("dept_no");
 
 ALTER TABLE "employee_manage" ADD CONSTRAINT "fk_employee_manage_dept_no" FOREIGN KEY("dept_no")
 REFERENCES "department" ("dept_no");
-
-ALTER TABLE "employee_info" ADD CONSTRAINT "fk_employee_info_emp_title_id" FOREIGN KEY("emp_title_id")
-REFERENCES "title" ("title_id");
 
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employee_info" ("emp_number");
